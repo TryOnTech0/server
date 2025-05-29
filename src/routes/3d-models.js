@@ -127,13 +127,13 @@ router.post('/', auth, upload.fields([
     const modelFile = req.files.model[0];
 
     // Upload preview image to S3
-    const previewS3Data = await uploadFileToS3(previewFile, 'previews/');
+    const previewS3Data = await uploadFileToS3(previewFile);
     if (!previewS3Data?.url || !previewS3Data?.key) {
       throw new Error('Failed to upload preview image to S3');
     }
 
     // Upload 3D model to S3
-    const modelS3Data = await uploadFileToS3(modelFile, 'models/');
+    const modelS3Data = await uploadFileToS3(modelFile);
     if (!modelS3Data?.url || !modelS3Data?.key) {
       throw new Error('Failed to upload 3D model to S3');
     }
